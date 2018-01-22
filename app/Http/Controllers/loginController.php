@@ -45,9 +45,20 @@ class loginController extends Controller {
             'cpf' => $request->cpf,
             'password' => $request->password
         ];
+
+         $admCreds  = [
+            'cpf' => $request->cpf,
+            'password' => $request->password
+        ];
+
+
         if(Auth::attempt($creds)) {
-            return response()->json(['success'=>'Logado com Sucesso!'],200);
-        } else {
+            return response()->json(['success'=>'Logado com Sucesso! Como usuário'],200);
+
+        } elseif (Auth::attempt($admCreds)) {
+
+             return response()->json(['success'=>'Logado com Sucesso! '],['ADM'=> 'B3M V1ND0 4DM1N15TR4D0R'],200);
+        }  else {
             return response()->json(['Error'=>"Error - Isn't Logged"],401);
         }
     }

@@ -11,6 +11,7 @@ $(document).ready(function() {
 	modals.next_race;    
 	modals.terms;
 	$('select').material_select();
+	$('.dropdown-button').dropdown();
 });
 
 var tools = {

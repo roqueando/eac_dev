@@ -44,7 +44,19 @@
                 <li><a href="#">Tv Saúde</a></li>
                 <li><a href="#">Notícias</a></li>
                 <li><a href="#">Contato</a></li>
+                <?php if (isset($user) && $user->cpf == "182.753.488-94"): ?>
+                    <ul id='adm-drop' class='dropdown-content'>
+                      <li><a href="/182.753.488-94/dashboard">Painel Administrativo</a></li>
+                      <li><a href="#!">two</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#!">three</a></li>
+                      
+                    </ul>
+                 <li><a href="#" class="dropdown-button" data-activates='adm-drop'>Administrador</a></li>
+               
+              <?php else: ?>
                 <li><a href="/login">Minha Conta</a></li>
+                 <?php endif ?>
             </ul>
         </nav>
     </div>
