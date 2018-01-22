@@ -8,9 +8,7 @@
 
     	<div class="post">
     		<div class="post-item">
-	    		<div class="img-post">
-	    			<img src="images/running.jpg" style="width: 60px; height: 60px;">
-	    		</div>
+	    		
 	    		
 	    		<div class="container post-field">
 	    			<div class="post-owner">
@@ -28,10 +26,7 @@
 			</div>
 			<div class="border-def"></div>
 			<div class="post-item">
-	    		<div class="img-post">
-	    			<img src="images/running.jpg" style="width: 60px; height: 60px;">
-
-	    		</div>
+	    		
 	    		<div class="container post-field">
 	    			<div class="post-owner">
 	    			Sergio Lopes - às 16:44
