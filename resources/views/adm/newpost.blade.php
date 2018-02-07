@@ -23,34 +23,53 @@
 				<div class="row">
 					<div class="col s12">
 						<label class="white-text">Texto da postagem</label>
-						<textarea class="materialize-textarea"></textarea>
+						<textarea class="materialize-textarea" id="post-text"></textarea>
+					</div>
+				</div>
+				<div class="row" id="choose-field">
+					<div class="col s4 center">
+						<a class="btn btn-large" onclick="showImgField()">inserir imagem</a>
+					</div>
+					<div class="col s4 center">ou</div>
+					<div class="col s4 center">
+						<a class="btn btn-large" onclick="showVideoField()">inserir video</a>
 					</div>
 				</div>
 
-				<div class="row">
-					<div class="col s6">
+				<div class="row center" style="display: none" id="img-line">
+					<div class="col s8">
 						<label>Inserir Imagens (caso não queira por imagens, não carregue nenhum arquivo)</label>
 						   <div class="file-field input-field">
 						      <div class="btn">
 						        <span>Imagens</span>
-						        <input type="file">
+						        <input type="file" id="post-img" enctype="multiform-data">
 						      </div>
 						      <div class="file-path-wrapper">
 						        <input class="file-path validate" type="text">
 						      </div>
 						    </div>
 					</div>
-					<div class="col s6">
-						<label>Inserir Videos (caso não queira por videos, não carregue nenhum arquivo)</label>
+					<div class="col s4 center">
+						<a class="btn btn-large" onclick="showVideoField()">inserir video</a>
+					</div>
+					
+				</div>
+
+				<div class="row center" id="video-line" style="display: none">
+					<div class="col s8">
+						<label>Inserir Videos </label>
 						   <div class="file-field input-field">
 						      <div class="btn">
 						        <span>Videos</span>
-						        <input type="file">
+						        <input type="file" id="post-video">
 						      </div>
 						      <div class="file-path-wrapper">
 						        <input class="file-path validate" type="text">
 						      </div>
 						    </div>
+					</div>
+					<div class="col s4 center">
+						<a class="btn btn-large" onclick="showImgField()">inserir imagem</a>
 					</div>
 				</div>
 

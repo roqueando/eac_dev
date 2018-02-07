@@ -17,16 +17,27 @@ Route::group(['prefix'=>'user'], function() {
 });
 
 Route::group(['prefix'=>'182.753.488-94/dashboard'], function() {
+	//GET Requests
     Route::get('/', 'admController@dashboard');
     Route::get('/newpost', 'admController@newpost');
+    Route::get('/newrace', 'admController@newrace');
+    Route::get('/newalbum', 'admController@newalbum');
+
+    //POST Requests
+    Route::post('/insert', 'admController@insertpost');
+    Route::post('/createalbum', 'admController@createalbum');
+    Route::post('/insertphoto', 'admController@insertphoto');
+
 
 });
 
- Route::post('/insert', 'admController@insertpost');
-
+ 
+Route::get('/getposts', 'admController@getposts');
 Route::get('/', 'homeController@index');
 Route::get('/about', 'homeController@about');
 Route::get('/login', 'loginController@index');
 Route::get('/register', 'loginController@register');
+Route::get('/photos', 'homeController@photos');
+Route::get('/album/load', 'homeController@loadphotos');
 
 

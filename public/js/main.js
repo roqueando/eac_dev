@@ -1,4 +1,8 @@
 
+// There will be run when the document is ready
+// Running modals, parallax, selects, dropdowns
+// and the posts, loaded by an AJAX request.
+
 $(document).ready(function() {
 	var modals = {
 		results: $("#results").modal(),
@@ -12,7 +16,112 @@ $(document).ready(function() {
 	modals.terms;
 	$('select').material_select();
 	$('.dropdown-button').dropdown();
+	$('.collapsible').collapsible();
+	 $('.materialboxed').materialbox();
+
+	$.ajax({
+		url: '/getposts',
+		type: 'GET',
+		dataType: 'json',
+		beforeSend: () => {
+			var loader = `
+			<div class="center">
+			 <div class="preloader-wrapper big active">
+			    <div class="spinner-layer spinner-green-only">
+			      <div class="circle-clipper left">
+			        <div class="circle"></div>
+			      </div><div class="gap-patch">
+			        <div class="circle"></div>
+			      </div><div class="circle-clipper right">
+			        <div class="circle"></div>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			`;
+			$(".post").html(loader);
+		},
+		success: (res) => {
+			if(res.posts.length > 0) {
+
+				for(var i in res.posts) {
+					
+					if(res.posts[i].image) {
+						$('.post').append(`
+						<div class="card grey lighten-2 post-item" style="padding: 1em">
+				    		
+				    		
+				    		<div class="container post-field">
+				    			<h3>${res.posts[i].title}</h3>
+				    			<div class="post-owner">
+				    			<strong>${res.posts[i].author}</strong>
+				    			</div>
+
+				    			<img src="images/post_imgs/${res.posts[i].image}" style="width: 100%; height: 350px" >
+				    			<blockquote>
+				    				${res.posts[i].post_message}
+				    			</blockquote>
+				    		</div>
+						</div>
+						`);
+					} else if(res.posts[i].video) {
+						$('.post').append(`
+						<div class="card grey lighten-2 post-item" style="padding: 1em">
+				    		
+				    		
+				    		<div class="container post-field">
+				    			<h5 class="center">${res.posts[i].author}</h5>
+				    			<div class="post-owner">
+
+				    				<strong>//${res.posts[i].title}</strong>
+				    			</div>
+				    			<blockquote>
+				    				${res.posts[i].post_message}
+				    			</blockquote>
+
+				    			<video width="100%" height="500" controls style="border-radius: 15px">
+								  <source src="images/videos/${res.posts[i].video}" type="video/mp4" >
+								</video>
+				    			
+				    		</div>
+						</div>
+						`);
+					} else {
+						$('.post').append(`
+						<div class="card grey lighten-2 post-item" style="padding: 1em">
+				    		
+				    		
+				    		<div class="container post-field">
+				    			<h3>${res.posts[i].title}</h3>
+				    			<div class="post-owner">
+				    			<strong>${res.posts[i].author}</strong>
+				    			</div>
+
+				    			<blockquote>
+				    				${res.posts[i].post_message}
+				    			</blockquote>
+				    		</div>
+						</div>
+						`);
+					}
+					$('.preloader-wrapper').remove();
+				}
+			} else {
+				$(".post").html('<h1 class="center">Não há postagens. :(</h1>');
+			}
+		},
+		error: (res, err) => {
+			console.log('Response not getted');
+		}
+	});
 });
+
+/*
+* Object Tools
+*
+* @function showOpt()
+* @description -> that will be show other options
+*/
 
 var tools = {
 	showOpt: () => {
@@ -115,3 +224,57 @@ $('#form-login').submit((e) => {
 		}
 	});
 });
+
+function loadImages(obj) {
+	var id = $(obj).attr('data-id');
+	var name = $(obj).attr('data-name');
+
+	$("#album-modal").modal();
+	$("#album-modal").modal('open');
+	$("#album-title").html(name);
+	$.ajax({
+		url: '/album/load',
+		type: 'GET',
+		dataType: 'json',
+		data: {
+			id: id
+		},
+		beforeSend: () => {
+			$("#album-content").html(`
+				<br>
+				<br>
+				<div class="progress">
+			      <div class="indeterminate center"></div>
+			  </div>
+			        
+				`);
+		},
+		success: (res) => {
+			
+			
+			if(res.photos.length > 0) {
+
+				for(var i in res.photos) {
+					$("#album-content").append(`
+						
+							<div class="col">
+								<img  width="150" src="images/image_gallery/${res.photos[i].image}">
+							</div>	
+						
+						`);
+				}
+				$(".progress").remove();
+			}
+		},
+		error: (res, err) => {
+			console.log(err);
+		}
+	});
+}
+
+$('#logout-btn').click((e) => {
+	
+	e.preventDefault();
+
+
+})

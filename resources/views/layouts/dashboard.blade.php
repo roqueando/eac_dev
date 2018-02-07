@@ -6,19 +6,15 @@
     <title>Eu Amo Corridas | Painel Administrativo</title>
     <link rel="stylesheet" href="<?php echo asset('css/materialize.min.css') ?>">
     <link rel="stylesheet" href="<?php echo asset('css/style.css') ?>">
-       <script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-        </script>
+     
 </head>
 <body>
 
-	<ul id="slide-out" class="side-nav fixed " style="background-image: url('/images/running.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; ">
+	<ul id="slide-out" class="side-nav fixed blue lighten-2" >
        <li><a href='/182.753.488-94/dashboard/'>Página Inicial Dashboard</a></li>
       <li><a href="/182.753.488-94/dashboard/newpost">Criar Postagens</a></li>
+      <li><a href="/182.753.488-94/dashboard/newrace">Postar Corridas</a></li>
+      <li><a href="/182.753.488-94/dashboard/newalbum">Criar Galeria de Fotos</a></li>
       <li><a href='/'>Página inicial do site</a></li>
     </ul>
    
@@ -34,6 +30,14 @@
 
 	<script src="<?php echo asset('js/JQuery.js') ?>"></script>
     <script src="<?php echo asset('js/materialize.min.js') ?>"></script>
+      <script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+        </script>
     <script src="<?php echo asset('js/adm.js') ?>"></script>
+
 </body>
 </html>

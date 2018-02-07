@@ -40,23 +40,22 @@
                 <li><a href="/about">Quem Somos</a></li>
                 <li><a href="#next-race" class="modal-trigger">Próximas Corridas</a></li>
                 <li><a href="#results" class="modal-trigger">Resultados</a></li>
-                <li><a href="#">Fotos</a></li>
+                <li><a href="/photos">Fotos</a></li>
                 <li><a href="#">Tv Saúde</a></li>
                 <li><a href="#">Notícias</a></li>
                 <li><a href="#">Contato</a></li>
-                <?php if (isset($user) && $user->cpf == "182.753.488-94"): ?>
+                @if($user && $user->cpf == "181.752.487-93")
                     <ul id='adm-drop' class='dropdown-content'>
                       <li><a href="/182.753.488-94/dashboard">Painel Administrativo</a></li>
-                      <li><a href="#!">two</a></li>
                       <li class="divider"></li>
-                      <li><a href="#!">three</a></li>
+                      <li><a href="#!" id="logout-btn">Sair</a></li>
                       
                     </ul>
                  <li><a href="#" class="dropdown-button" data-activates='adm-drop'>Administrador</a></li>
                
-              <?php else: ?>
+              @else
                 <li><a href="/login">Minha Conta</a></li>
-                 <?php endif ?>
+              @endif
             </ul>
         </nav>
     </div>
