@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEacUsers extends Migration
+class AddColumns extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateEacUsers extends Migration
      */
     public function up()
     {
-      
-    // 
+        Schema::table('eac_users', function (Blueprint $table) {
+            
+            $table->string('remember_token');
 
-      
-
-       
+        });
     }
 
     /**
@@ -28,6 +27,8 @@ class CreateEacUsers extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('eac_users', function (Blueprint $table) {
+            //
+        });
     }
 }

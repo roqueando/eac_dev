@@ -39,5 +39,6 @@ Route::get('/login', 'loginController@index');
 Route::get('/register', 'loginController@register');
 Route::get('/photos', 'homeController@photos');
 Route::get('/album/load', 'homeController@loadphotos');
+Route::get('/logout', 'homeController@logout');
 
 

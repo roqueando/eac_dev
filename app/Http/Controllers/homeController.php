@@ -16,8 +16,17 @@ class homeController extends Controller {
     	return view('home', $data);
     }
 
+    public function logout() {
+        Auth::logout();
+
+        return response()->json(['success'=>'Success'],200);
+    }
+
     public function about() {
-    	return view('about');
+        $data = [
+            'user' => Auth::user()
+        ];
+    	return view('about', $data);
     }
 
     public function photos() {

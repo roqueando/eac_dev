@@ -10,7 +10,7 @@
 </head>
 <body>
 
-	<ul id="slide-out" class="side-nav fixed blue lighten-2" >
+	<ul id="slide-out" class="side-nav fixed gradientness" >
        <li><a href='/182.753.488-94/dashboard/'>Página Inicial Dashboard</a></li>
       <li><a href="/182.753.488-94/dashboard/newpost">Criar Postagens</a></li>
       <li><a href="/182.753.488-94/dashboard/newrace">Postar Corridas</a></li>
@@ -18,7 +18,7 @@
       <li><a href='/'>Página inicial do site</a></li>
     </ul>
    
-    <div style="position: absolute; left: 300px; width: 78.0%;">
+    <div style="position: absolute; left: 300px; width: 78.0%;" class="grad-bg">
         <div class="navbar-fixed">
             <nav class="purple lighten-1">
                 <a href="#" class="brand-logo ">Dashboard > @yield('title')</a>

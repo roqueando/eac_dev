@@ -17,7 +17,9 @@ $(document).ready(function() {
 	$('select').material_select();
 	$('.dropdown-button').dropdown();
 	$('.collapsible').collapsible();
-	 $('.materialboxed').materialbox();
+	$('.materialboxed').materialbox();
+	$('.button-collapse').sideNav();
+
 
 	$.ajax({
 		url: '/getposts',
@@ -51,7 +53,7 @@ $(document).ready(function() {
 						<div class="card grey lighten-2 post-item" style="padding: 1em">
 				    		
 				    		
-				    		<div class="container post-field">
+				    		<div class="post-field">
 				    			<h3>${res.posts[i].title}</h3>
 				    			<div class="post-owner">
 				    			<strong>${res.posts[i].author}</strong>
@@ -69,7 +71,7 @@ $(document).ready(function() {
 						<div class="card grey lighten-2 post-item" style="padding: 1em">
 				    		
 				    		
-				    		<div class="container post-field">
+				    		<div class="post-field">
 				    			<h5 class="center">${res.posts[i].author}</h5>
 				    			<div class="post-owner">
 
@@ -79,7 +81,7 @@ $(document).ready(function() {
 				    				${res.posts[i].post_message}
 				    			</blockquote>
 
-				    			<video width="100%" height="500" controls style="border-radius: 15px">
+				    			<video width="100%" height="500" controls class="responsive-video">
 								  <source src="images/videos/${res.posts[i].video}" type="video/mp4" >
 								</video>
 				    			
@@ -91,7 +93,7 @@ $(document).ready(function() {
 						<div class="card grey lighten-2 post-item" style="padding: 1em">
 				    		
 				    		
-				    		<div class="container post-field">
+				    		<div class="post-field">
 				    			<h3>${res.posts[i].title}</h3>
 				    			<div class="post-owner">
 				    			<strong>${res.posts[i].author}</strong>
@@ -105,6 +107,7 @@ $(document).ready(function() {
 						`);
 					}
 					$('.preloader-wrapper').remove();
+					$('.center').remove();
 				}
 			} else {
 				$(".post").html('<h1 class="center">Não há postagens. :(</h1>');
@@ -258,7 +261,7 @@ function loadImages(obj) {
 					$("#album-content").append(`
 						
 							<div class="col">
-								<img  width="150" src="images/image_gallery/${res.photos[i].image}">
+								<img class="materialboxed" width="150" src="images/image_gallery/${res.photos[i].image}">
 							</div>	
 						
 						`);
@@ -273,8 +276,19 @@ function loadImages(obj) {
 }
 
 $('#logout-btn').click((e) => {
-	
+
 	e.preventDefault();
 
+	$.ajax({
+			url: '/logout',
+			type: 'GET',
+			dataType: 'json',
+			success: (res) => {
+				window.location.href="/";
+			},
 
-})
+			error: (res, err) => {
+				alert('Não foi possivel deslogar');
+			}
+		});
+});

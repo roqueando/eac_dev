@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEacUsers extends Migration
+class CreateEacRaces extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,7 @@ class CreateEacUsers extends Migration
      */
     public function up()
     {
-      
-    // 
-
-      
-
-       
+        //
     }
 
     /**
