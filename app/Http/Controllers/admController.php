@@ -7,6 +7,8 @@ use Auth;
 use App\eac_posts;
 use App\eac_albums;
 use App\eac_images;
+use App\eac_races;
+use App\eac_races_options;
 
 class admController extends Controller {
 
@@ -46,6 +48,16 @@ class admController extends Controller {
         ];
 
         return view('adm.newalbum', $data);
+    }
+
+    public function getraces() {
+        
+        $data = [
+            'races' => eac_races::retrieve(),
+        ];
+
+        return response()
+                ->json($data, 200);
     }
 
 
@@ -124,9 +136,28 @@ class admController extends Controller {
 
                 return response()->json(['Success'=> 'created an image gallery'], 200);
         }
-
-
     }
+
+    public function insert_race(Request $request) {
+
+        if($request->choose == '0') {
+            $races = new eac_races();
+            $opt = new eac_races_options();
+
+            $races->race_name = $request->race_name;
+            $races->save();
+
+            $opt->race_id = $races->id;
+            $opt->trj1 = $request->trj1;
+            $opt->trj2 = $request->trj2;
+            $opt->save();
+            return response()->json(['Success'=>'Has finish'], 200);
+        }
+        
+
+       
+    }
+
 
 
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEacRaces extends Migration
+class EacRacesOpt extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,9 @@ class CreateEacRaces extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('eac_races_options', function (Blueprint $table) {
+            
+        });
     }
 
     /**
@@ -23,6 +25,6 @@ class CreateEacRaces extends Migration
      */
     public function down()
     {
-        //
+       
     }
 }

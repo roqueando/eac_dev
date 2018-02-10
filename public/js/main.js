@@ -1,4 +1,5 @@
 
+
 // There will be run when the document is ready
 // Running modals, parallax, selects, dropdowns
 // and the posts, loaded by an AJAX request.
@@ -117,15 +118,47 @@ $(document).ready(function() {
 			console.log('Response not getted');
 		}
 	});
+		$.ajax({
+			url: '/getraces',
+			type: 'GET',
+			dataType: 'json',
+			success: (res) => {
+				if(res.races.length > 0) {
+
+					for(var i in res.races) {
+
+						
+
+						$("#race-content").append(`
+
+							<div class="card">
+								<div class="card-content">
+									<div class="card-title center">${res.races[i].race_name}</div>
+									<div class="card-body">
+										<blockquote>
+											Trajetos: ${res.races[i].trj1} km,
+
+										</blockquote>
+									</div>
+								</div>
+							</div>
+
+						`);
+					}
+
+				}
+			},
+			error: (res, err) => {
+				console.log('error: ', err);
+			}
+		});
 });
 
-/*
-* Object Tools
-*
-* @function showOpt()
-* @description -> that will be show other options
-*/
 
+/**
+ * [tools: give a showOpt method]
+ * @type {Object}
+ */
 var tools = {
 	showOpt: () => {
 		$("#third-line").hide();

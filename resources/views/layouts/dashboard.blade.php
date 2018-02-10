@@ -6,6 +6,8 @@
     <title>Eu Amo Corridas | Painel Administrativo</title>
     <link rel="stylesheet" href="<?php echo asset('css/materialize.min.css') ?>">
     <link rel="stylesheet" href="<?php echo asset('css/style.css') ?>">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
      
 </head>
 <body>

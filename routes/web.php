@@ -27,11 +27,12 @@ Route::group(['prefix'=>'182.753.488-94/dashboard'], function() {
     Route::post('/insert', 'admController@insertpost');
     Route::post('/createalbum', 'admController@createalbum');
     Route::post('/insertphoto', 'admController@insertphoto');
+    Route::post('/insert_race', 'admController@insert_race');
 
 
 });
 
- 
+Route::get('/getraces', 'admController@getraces');
 Route::get('/getposts', 'admController@getposts');
 Route::get('/', 'homeController@index');
 Route::get('/about', 'homeController@about');

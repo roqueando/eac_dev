@@ -130,12 +130,9 @@
 
 .gradientness {
 	background: linear-gradient(to bottom right, blue, lightblue);
+	opacity: 0.8;
 }
 
 .gradientness li a {
 	color: #fff;
-}
-
-.grad-bg {
-	background: linear-gradient(to bottom right, white, lightblue);
 }

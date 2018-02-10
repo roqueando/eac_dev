@@ -13,11 +13,9 @@
     <div id="next-race" class="modal">
         <div class="modal-content blue lighten-2">
           <h4 class="center-align">Próxima Corrida</h4>
-          <blockquote class="center-align">
-              Corrida de Fulano!
-              <br>
-              Praça da Matriz até Éden, venha!
-          </blockquote>
+            <div id="race-content">
+              
+            </div>
         </div>
         
     </div>
