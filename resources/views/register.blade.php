@@ -18,6 +18,9 @@
 <div class="container reg-box">
     <form role="form" id="form-register">
         <!-- first line -->
+        <div class="print-error-msg">
+            
+        </div>
         {{csrf_field()}}
         <div class="row">
             <div class="col">

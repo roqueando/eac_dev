@@ -136,3 +136,25 @@
 .gradientness li a {
 	color: #fff;
 }
+
+
+a {
+	color: inherit;
+}
+
+.hovered:hover {
+	box-shadow: 0 0px 64px 2px #333;
+}
+
+.added {
+
+	color: #add235;
+}
+
+.slide-img-chang {
+	padding: 16px;
+	width: 900px; 
+	height: auto;
+	border-radius: 50%;
+}
+

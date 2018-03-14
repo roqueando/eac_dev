@@ -9,6 +9,7 @@ use App\eac_albums;
 use App\eac_images;
 use App\eac_races;
 use App\eac_races_options;
+use App\eac_subscribes;
 
 class admController extends Controller {
 
@@ -33,12 +34,30 @@ class admController extends Controller {
     	return view('adm.newpost', $data);
     }
 
+    public function deletepost() {
+        $data = [
+            'user' => Auth::user(),
+            'posts' => eac_posts::all(),
+        ];
+
+        return view('adm.deletepost', $data);
+    }
+
     public function newrace() {
     	$data = [
     		'user' => Auth::user()
     	];
 
     	return view('adm.newrace', $data);
+    }
+
+    public function deleterace() {
+        $data = [
+            'user' => Auth::user(),
+            'races' => eac_races::all(),
+        ];
+
+        return view('adm.deleterace', $data);
     }
 
     public function newalbum() {
@@ -50,6 +69,15 @@ class admController extends Controller {
         return view('adm.newalbum', $data);
     }
 
+
+    public function deletealbum() {
+        $data = [
+            'user' => Auth::user(),
+            'galeries' => eac_albums::all()
+        ];
+
+        return view('adm.deletealbum', $data);
+    }
     public function getraces() {
         
         $data = [
@@ -108,6 +136,15 @@ class admController extends Controller {
     	return response()->json($data, 200);
     }
 
+    public function getraces_fromid(Request $req) {
+
+        $data = [
+            'race' => eac_races::retrieveFromId($req->id)
+        ];
+
+        return response()->json($data, 200);
+    }
+
     public function createalbum(Request $request) {
 
         $a = new eac_albums();
@@ -140,24 +177,68 @@ class admController extends Controller {
 
     public function insert_race(Request $request) {
 
-        if($request->choose == '0') {
-            $races = new eac_races();
-            $opt = new eac_races_options();
+        $races = new eac_races();
+        $opt = new eac_races_options();
 
-            $races->race_name = $request->race_name;
-            $races->save();
+        $races->race_name = $request->race_name;
+        $races->race_type = $request->choose;
+        $races->race_value = $request->race_value;
+        $races->save();
 
-            $opt->race_id = $races->id;
-            $opt->trj1 = $request->trj1;
-            $opt->trj2 = $request->trj2;
-            $opt->save();
-            return response()->json(['Success'=>'Has finish'], 200);
-        }
+        $coded = json_encode($request->trajects);
+        $opt->race_id = $races->id;
+        $opt->trajectOpt = $coded;
+        $opt->localization = $request->race_local;
+        $opt->date_marked = $request->race_date;
+        $opt->hour_marked = $request->race_hour;
+        $opt->description = $request->race_description;
+        $opt->atlet_kit = $request->race_date_kit;
+        $opt->save();
+
+        return response()->json(['Success'=>'Has finish'], 200);
         
 
        
     }
 
+    public function post_delete(Request $req) {
 
+        $id = $req->id;
+
+        eac_posts::select('*')
+                ->where('id', $id)
+                ->delete();
+
+        return response()->json(['Success'=>"Deletado com sucesso"], 200);
+    }
+    public function race_delete(Request $req) {
+
+        $id = $req->id;
+
+        eac_races::select('*')
+                ->where('id', $id)
+                ->delete();
+
+        eac_races_options::select('*')
+                ->where('race_id', $id)
+                ->delete();
+
+        eac_subscribes::select('*')
+                ->where('race_id', $id)
+                ->delete();
+
+        return response()->json(['Success'=>"Deletado com sucesso"], 200);
+    }
+
+    public function gallery_delete(Request $req) {
+
+        $id = $req->id;
+
+        eac_albums::select('*')
+                ->where('id', $id)
+                ->delete();
+
+        return response()->json(['Success'=>"Deletado com sucesso"], 200);
+    }
 
 }

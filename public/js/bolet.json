@@ -1,0 +1,14 @@
+{
+	"amount": 2100, 
+    "api_key": "ak_test_qfLQjleBjjHCErH5yUmovoe7O6LiFb",
+    "payment_method": "boleto",
+	 "customer":{
+        "type": "individual",
+        "country": "br",
+        "name": "Daenerys Targaryen",
+        "documents": [{
+            "type": "cpf",
+            "number": "00000000000"
+        }]
+    }
+}

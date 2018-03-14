@@ -8,21 +8,17 @@
     <title>Eu Amo Corridas </title>
     <link rel="stylesheet" href="css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-   <script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-        </script>
+
 </head>
 <body class="bg-login">
     <div >
         @yield('login')
     </div>
 
-    <script src="js/JQuery.js"></script>
+     <script src="js/JQuery.js"></script>
+    <script src="https://assets.pagar.me/checkout/checkout.js"></script>
     <script src="js/materialize.min.js"></script>
+    <script src="js/jquery.maskedinput.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

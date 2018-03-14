@@ -4,11 +4,14 @@
     <div class="caption-nopos">
         <span class="border">eu amo corridas</span>
     </div>
+
     <div class="login-box">
-
-
+        <div class="print-error-msg">
+            
+        </div>
+        
         <form role="form" id="form-login">
-
+          
             {{csrf_field()}}
             <label style="color: #fff; text-align: center;">CPF</label>
             <input type="text" id="cpf" placeholder="ex.: 000.000.000-00 (com os pontos e traços)">
@@ -21,10 +24,10 @@
             <button type="submit" class="btn btn-large blue lighten-2 " style="margin-left: 35%">entrar</button>
             <br>
             <br>
-            <div class="center">
-                <a href="/register" class="center">Não se inscreveu? Acesse aqui.</a>
+            <div class="center-align">
+                <a href="/register" class="center-align">Não se inscreveu? Acesse aqui.</a>
                 <br>
-                <a href="/" class="center">Voltar para página principal.</a>
+                <a href="/" class="center-align">Voltar para página principal.</a>
             </div>
 
     </div>

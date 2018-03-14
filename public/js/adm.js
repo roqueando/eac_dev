@@ -1,4 +1,6 @@
 // JS goes here
+// 
+var xsrf_token = $('meta[name="csrf-token"]').attr('content');
 var count = 0;
 
 /**
@@ -120,17 +122,59 @@ $("#add-form").submit((e) => {
 	});
 });
 
+function deleteTraject(obj, counter) {
+	
+	
+	var el = $(obj).find("#"+counter);
+	el.remove("#"+counter);
+}
+
+function addTraject() {
+	
+	count++
+	
+	$("#traject-row").append(`
+		<div class="trj-div row" id="${count}">
+			<div class="col s4" >
+				<input type="number" min="1" placeholder="Numero"  class="trj">
+			</div>
+			<div class="col s2" id="added">
+				<button class="btn green accent-4"  style="display:none">Adicionado</button>
+				<button type="button" class="btn-floating waves-effect" id="add-btn"><i class="material-icons green accent-2" onclick="insertTraject()">check</i></button>
+			</div>
+			<div class="col s1" id="other-added">
+				<button type="button" class="btn-floating" id="rmv-btn" onclick="deleteTraject(this, ${count})"><i class="material-icons red accent-2" >close</i></button>
+			</div>
+		</div>
+		`);
+}
+var trajects = [];
+
+function insertTraject() {
+	var value = $(`#${count} input[type="number"]`).val();
+	trajects.push(value);
+	console.log(trajects);
+	$("#rmv-btn").remove();
+	$("#add-btn").remove();
+	$(`#${count} #added`).append(`
+		<span class="btn green accent-4" style="font-size: 12x">Adicionado</span>
+		`);
+}
 
 $("#newrace-form").submit((e) => {
 	e.preventDefault();
 
 	let race_name = $("#race-name").val();
-	console.log(race_name);
-
-	let n1 = $(`#trj-1`).val();
-	let n2 = $(`#trj-2`).val();
 	let choose = $("#typeRace").val();
-	
+	let race_local = $('#race_local').val();
+	let race_date = $('#race_date').val();
+	let race_hour = $('#race_hour').val();
+	let race_date_kit = $('#race_date_kit').val();
+	let race_value = $('#race_value').val();
+	let race_description = $('#race_description').val();
+
+
+
 	$.ajax({
 		url:'/182.753.488-94/dashboard/insert_race',
 		type: 'POST',
@@ -139,20 +183,26 @@ $("#newrace-form").submit((e) => {
 			'X-CSRF-TOKEN': token.val(),
 		},
 		data: {
+			trajects: trajects,
 			choose: choose,
 			race_name: race_name,
-			trj1: n1,
-			trj2: n2,
+			race_local: race_local,
+			race_date: race_date,
+			race_hour: race_hour,
+			race_date_kit: race_date_kit,
+			race_value: race_value,
+			race_description: race_description,
+
 		},
 		success: (res) => {
-			console.log('Foi');
+			Materialize.toast('Corrida criada com sucesso', 3000, 'rounded');
 		},
 		error: (res, err) => {
 			
-			console.log(err);
+			Materialize.toast('Não foi possível realizar esta ação', 3000, 'rounded');
 		}
 
-	})
+	});
 });
 
 
@@ -169,25 +219,86 @@ function turn(value) {
 	}
 }
 
-async function addTraject() {
-	
-	count++
-	await $("#traject-row").append(`
-	<div class="trj-div" id="${count}">
-		<div class="col s3" >
-			<input type="number" min="1" placeholder="Numero"  class="trj">
-		</div>
-		<div class="col s8" >
-			<input type="text" placeholder="Nome do trajeto (ex.: 6km)"  class="trj">
-		</div>
+$("#deletepost-form").submit((e) => {
+	e.preventDefault();
 
-		<div class="col s1">
-			<button class="btn-floating"><i class="material-icons red accent-2" onclick="deleteTraject('#trj-div')">close</i></button>
-		</div>
-	</div>
-		`);
-}
+	var post = $("#posts").val();
 
-function deleteTraject(selector) {
-	$(selector).remove();
-}
+	$.ajax({
+		url: '/182.753.488-94/dashboard/deletepost',
+		type: 'DELETE',
+		dataType: 'json',
+		headers: {
+			'X-CSRF-TOKEN': xsrf_token
+		},
+		data: {
+			id: post,
+		},
+		success: (res) => {
+			Materialize.toast('Postagem deletada com sucesso', 3000, 'rounded');
+		},
+		error: (res, err) => {
+			Materialize.toast(err, 3000, 'rounded');
+		}
+
+		
+
+	});
+
+});
+
+$("#deleterace-form").submit((e) => {
+	e.preventDefault();
+
+	var race = $("#races").val();
+
+	$.ajax({
+		url: '/182.753.488-94/dashboard/deleterace',
+		type: 'DELETE',
+		dataType: 'json',
+		headers: {
+			'X-CSRF-TOKEN': xsrf_token
+		},
+		data: {
+			id: race,
+		},
+		success: (res) => {
+			Materialize.toast('Corrida deletada com sucesso', 3000, 'rounded');
+		},
+		error: (res, err) => {
+			Materialize.toast(err, 3000, 'rounded');
+		}
+
+		
+
+	});
+
+});
+
+$("#deletegallery-form").submit((e) => {
+	e.preventDefault();
+
+	var gallery = $("#galeries").val();
+
+	$.ajax({
+		url: '/182.753.488-94/dashboard/deletegallery',
+		type: 'DELETE',
+		dataType: 'json',
+		headers: {
+			'X-CSRF-TOKEN': xsrf_token
+		},
+		data: {
+			id: gallery,
+		},
+		success: (res) => {
+			Materialize.toast('Galeria deletada com sucesso', 3000, 'rounded');
+		},
+		error: (res, err) => {
+			Materialize.toast(err, 3000, 'rounded');
+		}
+
+		
+
+	});
+
+});

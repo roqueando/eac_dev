@@ -7,80 +7,72 @@
 			<div class="card-title center">Nova Corrida</div>
 
 			<div class="card-body">
-				<!-- <button class="btn btn-large waves-effect blue accent-4" onclick="addTraject()"><i class="material-icons left">add_circle_outline</i>Adicionar Trajeto</button> -->
-						</div>
+				
 
 				<form role="form" id="newrace-form">
 					{{csrf_field()}}
 					<div class="row">
-						<div class="col s6">
+						<div class="col s5">
 							<label >Nome da Corrida</label>
 							<input type="text" id="race-name" placeholder="Nome da corrida">
 						</div>
-						<div class="col s6">
+						<div class="col s3">
 							<label>Tipo da Corrida</label>
-							<select id="typeRace" onchange="turn(this.value)">
+							<select id="typeRace" >
 								<option>Escolha o tipo de corrida</option>
 								<option value="0" >Corrida</option>
 								<option value="1" >Caminhada</option>
 							</select>
 						</div>
-						
+						<div class="col s4">
+							<div style="border-bottom: 13px solid transparent"></div>
+							<button type="button" class="btn btn-large blue accent-4" onclick="addTraject()"><i class="material-icons left">add_circle_outline</i> adicionar trajetos</button>
+						</div>
 					</div>
-					
-					<div id="racing" style="display: none">
-						<div class="row center">
-							<div class="col s12">
-								<label style="font-size:45px">Trajetos de Corrida</label>
-							</div>
-														
-						</div>
-						
-						<div class="row" id="traject-row">
-							
-							<div class="col s12">
-								<input type="number" min="1" id="trj-1">
-							</div>
-		
-							
-						</div>
-						<div class="row" id="traject-row">
-							
-							<div class="col s12">
-								<input type="number" min="1" id="trj-2">
-							</div>
-							
-						</div>
 
-					</div>
-					<div id="walking" style="display: none">
-						<div class="row center">
-							<div class="col s12">
-								<label style="font-size:45px">Trajetos de Caminhada</label>
+					<div class="row">
+						<div class="col" id="traject-row" style="width: 300px; height: 400px;overflow-y: scroll; border: 1px solid #e3e3e3; border-radius: 3px; padding: 0.75em"></div>
+						<div class="col s4">
+							<label>Localização do Evento</label>
+							<input type="text" id="race_local">
+						</div>
+						<div class="col s3">
+							<label>Data do Evento</label>
+							<input type="text"  id="race_date">
+						</div>
+						<div class="row">
+							<div class="col s4">
+								<label>Hora do Evento</label>
+								<input type="text" id="race_hour">
 							</div>
-														
+							<div class="col s3">
+								<label>Data da entrega do kit do Atleta</label>
+								<input type="text" id="race_date_kit">
+							</div>
+							<div class="col s7">
+								<label>Valor da Inscrição para a Corrida</label>
+								<input type="text"  id="race_value">
+							</div>
+							<div class="col s7">
+								<label>Descrição a mais</label>
+								<textarea class="materialize-textarea" id="race_description" placeholder="Descreva algo sobre a corrida como o que é e não é permitido"></textarea>
+							</div>
+							
 						</div>
 						
-						<div class="row" id="traject-row">
-							
-							<div class="col s2">
-								<input type="number" min="" name="trj-number">
-							</div>
-							<div class="col s9">
-								<input type="text" name="trj-traject">
-							</div>
-							<div class="col s1">
-								<button class="btn-floating green accent-4"><i class="material-icons">add</i></button>
-							</div>
+					</div>
+
+						<div class="row center">
+							<button type="submit" class="btn btn-large green accent-4">Criar corrida</button>
 							
 						</div>
-					</div>
-					<div class="row center">
-						<button type="submit" class="btn btn-large green accent-4">Criar corrida</button>
-					</div>
 				</form>
 			</div>
+
 		</div>
+				
+				
 	</div>
+
 	
 @stop
